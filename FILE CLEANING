@@ -1,0 +1,21 @@
+# Import needed framework
+import os
+import pandas as pd
+
+# Get File and input into a Dataframe (df)
+excel_file = '/Users/chardphebe/Downloads/CASH.xlsx'
+df = pd.read_excel(excel_file, sheet_name="Sheet1")
+
+# Check if the CSV file exists
+if not os.path.exists(excel_file):
+    print("CSV file not found.")
+
+# Replace specific text in the third column
+df['SOURCE'] = df['SOURCE'].str.replace("SAVE AS YOU GO TRANSFER DEBIT TO XXXXXXXXXXX1056", "SAVINGS")
+
+#Display the first twenty rows
+print(df.head(30))
+
+# Save the modified DataFrame back to an Excel file
+output_file_path = "CASH2.xlsx"
+df.to_excel(output_file_path, index=False)
